@@ -34,26 +34,14 @@ public class OrderedSuperArray extends SuperArray{
     
     /*call the proper add.*/
     public void add(int index, String element){
-        String [] replacement= new String [size()+1];
-	int place=0;
-	for (int x = 0 ; x < size() ; x++){
-	    if (x==index){replacement[x]=element;
-		x=x+1;}
-	    if (x!=index)replacement[x]=data[place];
-	    place+=1;
-	}
-	this.size=size+1;
-	data= new String[size];
-	for (int i = 0 ; i < replacement.length ; i++){
-	    data[i]=replacement[i];
-	}
-
+	add(element);
     }
     
     /*Write this method and any
       appropriate helper methods.*/
     public boolean add(String element){
 	int index=place(element);
+	if (index==-1)return false;
 	size=size+1;
 	String [] replacement= new String [size];
 	int place=0;
@@ -81,28 +69,37 @@ public class OrderedSuperArray extends SuperArray{
     
 
     public int place(String word){
+	String element=word;
 	size();
+	if (size==0) return 0;
+	if (size()==1){
+	    if (element.compareTo(get(0)) < 0){
+		return 0;
+	    }
+	    else{
+		return 1;
+	    }
+
+	}
 	int start=0;
 	int end=size-1;
 	int mid=0;
-	while (start!=end){
+	for (int i = 0 ; i < size+1 ; i++){
 	    mid=(start+end)/2;
-	    int v1=Math.abs(data[start].compareTo(word));
-	    int v2=Math.abs(data[end].compareTo(word));
-	    if (v1>v2)start=mid;
-	    if (v2>v1)end=mid;
-	    if (v1==v2)start=mid;
-	    if (Math.abs(start-end)==1){
-		int v3=data[start].compareTo(word);
-		int v4=data[end].compareTo(word);
-		if (v1>v2&& v4<0)return end+1;
-		if (v1>v2&& v4>0)return end;
-		if (v2>v1 && v3>0)return start+1;
+	    int v=word.compareTo(word);
+	    if (v>0)start=mid;
+	    if (v<0)end=mid;
+	    if (v==0)return mid;
+	    if (start+1==end){
+		int v2=word.compareTo(data[start]);
+		int v3=word.compareTo(data[end]);
+		if (v2<0)return start;
+		if (v2>=0)return end;
 	       
 	    
 	    }
 	}
-	return start+1;
+	return -1;
     }
     public String toString(){
 	String transformation="[";
