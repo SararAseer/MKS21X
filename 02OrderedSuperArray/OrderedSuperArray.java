@@ -86,7 +86,7 @@ public class OrderedSuperArray extends SuperArray{
 	int mid=0;
 	for (int i = 0 ; i < size+1 ; i++){
 	    mid=(start+end)/2;
-	    int v=word.compareTo(word);
+	    int v=word.compareTo(data[mid]);
 	    if (v>0)start=mid;
 	    if (v<0)end=mid;
 	    if (v==0)return mid;
