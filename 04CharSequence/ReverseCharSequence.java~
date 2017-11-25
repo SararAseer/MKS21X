@@ -1,0 +1,33 @@
+public class ReverseCharSequence implements CharSequence{
+    private String sequence;
+
+    
+    public ReverseCharSequence(String s){
+	String x="";
+	for (int i = s.length()-1; i>=0 ; i--){
+	    x+= charAt(i);
+	    
+
+	}
+	sequence=x;
+    }
+    
+    public char charAt(int index){
+	return sequence.charAt(index);
+    }
+
+    public int length(){
+	return sequence.length();
+    }
+
+    public CharSequence subSequence(int start, int end){
+	CharSequence Seqv2=new ReverseCharSequence(sequence.substring(start , end));
+	CharSequence Seqv3=new ReverseCharSequence(Seqv2);
+	return Seqv3;
+    }
+
+    public String toString(){
+	return sequence;
+
+    }
+}
