@@ -20,13 +20,8 @@ public class ReverseCharSequence implements CharSequence{
 	return sequence.length();
     }
 
-    public CharSequence subSequence(int start, int end){
-	String ss="";
-	for (int i = 0; i> sequence.length() ; i++){
-	    if (i< end && i>=start){
-		ss+= sequence.charAt(i);  } 
-	}
-	CharSequence seq=ss;
+    public CharSequence subSequence(int start, int end){	
+	CharSequence seq=sequence.substring(start, end);
 	return seq;
     }
 
