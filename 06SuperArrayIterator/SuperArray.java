@@ -1,4 +1,12 @@
-public class SuperArray{
+import java.util.Iterator;
+import java.util.*;
+
+
+public class SuperArray implements Iterable<String> {
+    public Iterator<String> iterator(){
+	return new SuperArrayIterator(data);
+    }
+
     
     private String[] data;
     
