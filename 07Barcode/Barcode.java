@@ -32,6 +32,20 @@ public class Barcode{
     }
 
     public String getCode(){
+	return Barcode;
+    }
+
+    public String toCode(){
+	if (zip.length()!=5){
+	     throw new IllegalArgumentException("Not right length");
+	}
+	try{
+	    check+=Integer.parseInt(zip);
+	}
+	catch(IllegalArgumentException e) {
+	    throw new IllegalArgumentException("Not a 5 digit integer");
+	    
+	}
 	Barcode="|";
 	for (int i=0; i < zip.length()-1 ; i++){
 	    Barcode+=key[Integer.parseInt(zip.substring(i,i+1))];
@@ -42,8 +56,14 @@ public class Barcode{
 	return Barcode;
 		
     }
+
+  
     
     public String toZip(String input){
+	if (input.length()!=32 || input.charAt(0)!='|' && input.charAt(31)!='|'){
+	    throw new IllegalArgumentException("Not a 5 digit integer");
+	}
+	
 	String test= input.substring(1,26);
 	String code="";
 	for (int i= 0; i < test.length(); i++){
@@ -54,6 +74,10 @@ public class Barcode{
 	    }
 	    i+=4;
 	}
+	if (code.length()!=5){
+	    throw new IllegalArgumentException("Not a 5 digit integer");
+	}
+    
 	return code;
 
     }
