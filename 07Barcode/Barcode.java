@@ -1,8 +1,8 @@
 public class Barcode{
-    private String  zip;
-    private int check;
-    private String Barcode;
-    private String[] key={"||:::", ":::||", "::|:|", "::||:" , ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+    private static String  zip;
+    private static int check;
+    private static String Barcode;
+    private static String[] key={"||:::", ":::||", "::|:|", "::||:" , ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
     
     
     public Barcode(String zip) {
@@ -34,8 +34,7 @@ public class Barcode{
     public String getCode(){
 	return Barcode;
     }
-
-    public String toCode(){
+    public static String toCode(String zip){
 	if (zip.length()!=5){
 	     throw new IllegalArgumentException("Not right length");
 	}
@@ -58,8 +57,8 @@ public class Barcode{
     }
 
   
-    
-    public String toZip(String input){
+    public static String toZip(String input){
+
 	if (input.length()!=32 || input.charAt(0)!='|' && input.charAt(31)!='|'){
 	    throw new IllegalArgumentException("Not a 5 digit integer");
 	}
