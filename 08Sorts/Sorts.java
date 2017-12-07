@@ -65,16 +65,7 @@ public class Sorts{
 	
     }
     
-    public static void main(String[] args) {
-	int [] x={1,2,51,53,246,146,63,12,41};
-	int [] y={1,212,51,5321,246,4146,613,122,41};
-	System.out.println(name());
-	selectionSort(x);
-	insertionSort(y);
-	System.out.println(arrayOut(x));
-	System.out.println(arrayOut(y));
-
-    }
+    
 
 }
     
