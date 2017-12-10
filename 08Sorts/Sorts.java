@@ -64,11 +64,45 @@ public class Sorts{
 	}
 	
     }
-    
-    
 
-}
+   
+
+    public static void bubbleSort(int[] data){
+	for (int i=0; i <data.length-1;i++){
+	    if(i<0)i=0;
+	    if (data[i]>data[i+1]){
+		int x=i;
+		while(x!=data.length-1 && data[x]>data[x+1]){
+		    int swap=data[x];
+		    data[x]=data[x+1];
+		    data[x+1]=swap;
+		    x++;
+		    
+		}
+		i=i-2;
+	    }
+	    
+	}
+    }
+
     
+ public static void main(String[]artie){                                         
+     int[] randish = new int[15];                                                
+     for(int i = 0 ; i < randish.length; i++){                                   
+	 randish[i] =(int)(Math.random()*100);                                   
+     }                                                                                            
+     
+     
+     System.out.println(Arrays.toString(randish));                               
+     bubbleSort(randish);                                                  
+     System.out.println(Arrays.toString(randish));                               
+     
+ }                                                                               
+
+    
+    
+}
+
     
 
    
