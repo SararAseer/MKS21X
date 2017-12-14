@@ -54,7 +54,7 @@ public class TemperatureGUI extends JFrame implements ActionListener{
 	       
 	   }
 	}
-	catch(Exception x){
+	catch(Exception NumberFormatException){
 	    result.setText("It is not a number");
 	}
 	
