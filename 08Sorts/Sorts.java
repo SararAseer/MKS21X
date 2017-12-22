@@ -16,7 +16,7 @@ public class Sorts{
 	return output;
     }
     
-    public static void selectionSortx(int[] data){
+    public static void selectionSort(int[] data){
 	int min=0;
 	int sub=0;
 	boolean change=false;
@@ -80,22 +80,7 @@ public class Sorts{
 	}
     }
 
-    public static void selectionSort(int[] data){
-	for (int i=0; i <data.length-1;i++){
-	    if (data[i]>data[i+1]){
-		int x=i;
-		while(x!=data.length-1 && data[x]>data[x+1]){
-		    int swap=data[x];
-		    data[x]=data[x+1];
-		    data[x+1]=swap;
-		    x++;
-		    
-		}
-	    }
-	    
-	}
-    }
-
+   
     
  public static void main(String[]artie){                                         
      int[] randish = new int[15];                                                
