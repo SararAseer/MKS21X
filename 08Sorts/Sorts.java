@@ -16,7 +16,7 @@ public class Sorts{
 	return output;
     }
     
-    public static void selectionSort(int[] data){
+    public static void selectionSortx(int[] data){
 	int min=0;
 	int sub=0;
 	boolean change=false;
@@ -67,9 +67,21 @@ public class Sorts{
 
    
 
+    
     public static void bubbleSort(int[] data){
+	for (int i = 0; i < data.length-1; i++){
+	    for (int j = 0; j < data.length-1-i; j++){
+		if (data[j+1]<data[j]){
+		    int swap = data[j+1];
+		    data[j+1] = data[j];
+		    data[j] = swap;
+		}
+	    }
+	}
+    }
+
+    public static void selectionSort(int[] data){
 	for (int i=0; i <data.length-1;i++){
-	    if(i<0)i=0;
 	    if (data[i]>data[i+1]){
 		int x=i;
 		while(x!=data.length-1 && data[x]>data[x+1]){
@@ -79,7 +91,6 @@ public class Sorts{
 		    x++;
 		    
 		}
-		i=i-2;
 	    }
 	    
 	}
@@ -94,7 +105,7 @@ public class Sorts{
      
      
      System.out.println(Arrays.toString(randish));                               
-     bubbleSort(randish);                                                  
+     InsertionSort(randish);                                                  
      System.out.println(Arrays.toString(randish));                               
      
  }                                                                               
