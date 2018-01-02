@@ -1,9 +1,9 @@
-public class ReverseCharSequence implements CharSequence{
+public class ReversedCharSequence implements CharSequence{
     private String sequence;
     private String original;
 
     
-    public ReverseCharSequence(String input){
+    public ReversedCharSequence(String input){
 	original=input;
 	String copy="";
 	for (int i = input.length()-1; i>=0 ; i--){
