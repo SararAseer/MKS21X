@@ -1,118 +1,204 @@
+import java.util.*;
+
 public class OrderedSuperArray extends SuperArray{
-    
-    private String [] data;
-    private int size;
-
-    
-
-    public int size(){
-	size=0;
-	for (int i= 0 ; i < data.length ; i++ ){
-	    if (data[i]!=null) size+=1;}
-	return size;
-    }
-    
     public OrderedSuperArray(){
-        data=new String[10];
+	super(10);
+    }
+    public OrderedSuperArray(int size){
+	super(size);
+    }
+    public OrderedSuperArray(String [] ary){
+	super();
+	for (String x: ary){
+	    add(x);
+	}
+    }
+    public static void main(String[] args){
+	for (int x = 0; x < 9; x ++){
+	    runTest02(x);
+	}
 
     }
 
-    public String set(int index, String element){
-	throw new UnsupportedOperationException("no");
-    }
     
-    public OrderedSuperArray(int capacity){
-	data=new String[capacity];
-    }
-    public  OrderedSuperArray(String [] input){
-	size=input.length;
-	data= new String[size];
-	for (int i = 0 ; i < data.length ; i++){
-	    data[i]=input[i];
+    public static void runTest02(int testID){
+  
+	if(testID<0){
+	    System.out.println("Error in driver usage!");
+	    System.exit(0);
 	}
-    }
+  
+	OrderedSuperArray s1 = new OrderedSuperArray();
+	ArrayList<String> s2 = new ArrayList<>();
+  
+	try{
+	    if(testID == 0 ){
+	    }
     
-    /*call the proper add.*/
-    public void add(int index, String element){
-	add(element);
-    }
+	    if(testID == 1 ){
+		s1.add("4");
+		s2.add("4");
+		s1.add("1");
+		s2.add("1");
+		s1.add("0");
+		s2.add("0");
+	    }
     
-    /*Write this method and any
-      appropriate helper methods.*/
-    public boolean add(String element){
-	int index=place(element);
-	if (index==-1)return false;
-	size=size+1;
-	String [] replacement= new String [size];
-	int place=0;
-	for (int x = 0 ; x < replacement.length ; x++){
-	    if (x==index)x=x+1;
-	    if (x!=index && place <data.length)replacement[x]=data[place];
-	    place+=1;
+	    if(testID == 2 ){
+		s1.add("3");
+		s2.add("3");
+		s1.add("1");
+		s2.add("1");
+		s1.add("5");
+		s2.add("5");
+		s1.add("0");
+		s2.add("0");
+	    }
+    
+	    if(testID == 3 ){
+		s1.add("1");
+		s2.add("1");
+		for(int i = 0; i < 10; i ++){
+		    String v = ""+(int)(Math.random()*1000);
+		    int in = (int)(Math.random()*s2.size());
+	
+		    s1.add(in,v);
+		    s2.add(in,v);
+		}
+      
+	    }
+    
+	    if(testID == 4 ){
+		s1.add("1");
+		s2.add("1");
+		try{
+		    s1.set(0,"");
+		} catch(UnsupportedOperationException e){
+        
+		}
+	    }
+    
+	    if(testID == 5 ){
+		try{
+		    s1.set(0,"");
+		} catch(UnsupportedOperationException e){
+        
+		}
+	    }
+    
+	    if(testID == 6 ){
+		String[] x= {"adsf","b","X","C","fish","cat","Abby","break","romp"};
+		s1 = new OrderedSuperArray(x);
+		s2.addAll(Arrays.asList(x));
+	    }
+	    if(testID == 7 ){
+		s1.add("1");
+		s2.add("1");
+      
+		for(int i = 0; i < 1000;   i ++){
+		    String v = ""+(int)(Math.random()*1000);
+		    s1.add(v);
+		    s2.add(v);
+		}
+	    }
+    
+    
+	}catch(Exception f){
+	    s2.add("0");
+	    // f.printStackTrace();
 	}
-	replacement[index]=element;
+  
+	Collections.sort(s2);
+	if(equals(s1,s2)){
+	    System.out.println("Test "+testID+",PASS");
+	}else{
+	    System.out.println("Test "+testID+",FAIL!");// "+s1+"!="+s2);
+	    System.out.println(s1);
+	    System.out.println(s2);
 
-	data= new String[size];
-	for (int i = 0 ; i < replacement.length ; i++){
-	    data[i]=replacement[i];
 	}
+    }
+
+
+    //oops!
+    public static boolean equals(OrderedSuperArray s, ArrayList<String> a){
+	if(s.size() == a.size()){
+	    for(int i = 0; i < s.size(); i++){
+		if(!s.get(i).equals( a.get(i))){
+		    return false;
+		}
+	    }
+	    return true;
+	}
+	return false;
+    }
+
+
+ 
+
+    public int findIndex(String element){
+	for (int i = 0; i < size(); i++){
+	    if (element.compareTo(get(i))<=0) return i;
+	}
+	return size();
+    }
+
+    public int findIndexBinary(String element){
+	if (size() <= 0) {
+	    return -1;
+	}
+	int start = 0;
+	int end = size()-1;
+	int mid;
+	while (start != end) {
+	    mid = (start + end) / 2;
+	    if (super.get(mid).compareTo(element) <= 0) {
+		start = mid + 1;
+	    }
+	    else {
+		end = mid;
+	    }
+	}
+	if (super.get(start).compareTo(element) <= 0) {
+	    return start+1;
+	}
+	return start;
+    }
+    
+  
+ 
+
+
+
+    public int indexOf(String element){
+	for (int i = 0; i < size(); i++){
+	    if (element.equals(get(i))) return i;
+	}
+	return -1;
+    }
+    public int lastIndexOf(String element){
+	for (int i = size()-1; i >= 0; i--){
+	    if (element.equals(get(i))) return i;
+	}
+	return -1;
+    }
+
+
+  
+    public void add(int index, String value){
+	add(value);
+    }
+    public boolean add(String value){
+	if (size()==0) super.add(value);
+	else{
+	    super.add(findIndexBinary(value),value);
+	}
+
 	return true;
     }
-
     
-    public int indexOf(String element){
-	for (int i = 0 ; i < size ; i++){
-	    if (data[i]!=null&&data[i].equals(element))return i;
-	}
-	return -1;
+    public String set(int index, String element){
+	throw new UnsupportedOperationException();
     }
-    
 
-    public int place(String word){
-	String element=word;
-	size();
-	if (size==0) return 0;
-	if (size()==1){
-	    if (element.compareTo(get(0)) < 0){
-		return 0;
-	    }
-	    else{
-		return 1;
-	    }
-
-	}
-	int start=0;
-	int end=size-1;
-	int mid=0;
-	for (int i = 0 ; i < size+1 ; i++){
-	    mid=(start+end)/2;
-	    int v=word.compareTo(data[mid]);
-	    if (v>0)start=mid;
-	    if (v<0)end=mid;
-	    if (v==0)return mid;
-	    if (start+1==end){
-		int v2=word.compareTo(data[start]);
-		int v3=word.compareTo(data[end]);
-		if (v2<0)return start;
-		if (v2>=0)return end;
-	       
-	    
-	    }
-	}
-	return -1;
-    }
-    public String toString(){
-	String transformation="[";
-	if (size==1)return "["+ data[0]+"]";
-	if (size>1){
-	    for (int i = 0 ; i < data.length-1 ; i++){
-	    if (data[i]!=null)transformation+=data[i]+",";
-	    }
-	}
-	transformation+= data[size-1]+"]";
-	return transformation;
-	
-    }
-       
 }
-

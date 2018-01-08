@@ -104,7 +104,9 @@ public class SuperArray implements Iterable<String> {
 	    if (data[i]!=null)transformation+=data[i]+",";
 	    }
 	}
-	transformation+= data[size-1]+"]";
+	if (size>1){
+	    transformation+= data[size-1]+"]";
+	}
 	return transformation;
 	
     }
