@@ -45,7 +45,7 @@ public class SuperArray implements Iterable<String> {
     }
     
    
-    public String getIndex(int index){
+    public String get(int index){
 	if (index < 0 || index >= size())return null;
 	return data[index];
     }
@@ -117,12 +117,15 @@ public class SuperArray implements Iterable<String> {
     }
 
     public void add(int index, String element){
+	if (index < 0 || index > size){
+	    throw new IndexOutOfBoundsException("the index is out of range (index < 0 || index >= size())");
+	}
 	
 	String [] replacement= new String [size()+1];
 	int place=0;
 	for (int x = 0 ; x < replacement.length ; x++){
 	    if (x==index)x=x+1;
-	    if (x!=index)replacement[x]=data[place];
+	    if (x!=index && x< replacement.length)replacement[x]=data[place];
 	    place+=1;
 	}
 	replacement[index]=element;

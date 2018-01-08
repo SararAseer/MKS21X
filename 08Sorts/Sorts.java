@@ -90,7 +90,7 @@ public class Sorts{
      
      
      System.out.println(Arrays.toString(randish));                               
-     InsertionSort(randish);                                                  
+     insertionSort(randish);                                                  
      System.out.println(Arrays.toString(randish));                               
      
  }                                                                               
